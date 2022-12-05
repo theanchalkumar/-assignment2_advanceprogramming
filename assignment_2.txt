@@ -1,0 +1,73 @@
+1.
+
+def pentagonal(n):
+    return int((5 * n**2 - 5 * n + 2) /2)
+
+n = int(input("Enter integer::"))
+print(f"Number of dots around the center on {n}th iteration are::",pentagonal(n))
+
+2.
+
+def encrypt(s):
+    d = {"a": 0 ,"e": 1,"i" : 2,"o" : 2, "u" : 3}
+    
+    s = s[::-1]
+    
+    for letter in s:
+        if letter in d.keys():
+            s = s.replace(letter,str(d[letter]))
+        return s + 'aca'
+    
+print(encrypt("banana"))
+print(encrypt("karaca"))
+print(encrypt("burak"))
+print(encrypt("alpaca"))
+
+3.
+
+import calendar
+
+def has_friday_13(month,year):
+    c = calendar.Calendar(firstweekday=calendar.SUNDAY)
+
+    monthcal = c.monthdatescalendar(year,month)
+
+    for week in monthcal:
+        for day in week:
+            if day.weekday() == calendar.FRIDAY and day.month == month and day.day == 13:
+                return True
+    return False
+
+print(has_friday_13(3, 2020))
+
+print(has_friday_13(10, 2017))
+
+print(has_friday_13(1, 1985))
+
+4.
+
+import re
+
+lst = ["bad cookie", "good cookie", "bad cookie", "good cookie", "good cookie"]
+
+pattern = r"(?<!good )cookie"
+
+len(re.findall(pattern, ", ".join(lst)))
+
+5.
+
+def pluralize(l):
+    s = set()
+    
+    for item in l:
+        if l.count(item) > 1:
+            s.add(item + 's')
+        else:
+            s.add(item)        
+    return s    
+        
+print(pluralize(["cow", "pig", "cow", "cow"]))    
+
+print(pluralize(["table", "table", "table"]))
+
+print(pluralize(["chair", "pencil", "arm"])) # set is an unordered collection of elements, that is why elemnts appear in random order
